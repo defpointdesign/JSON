@@ -1,0 +1,27 @@
+{
+   "response": {
+      "count": 5961878,
+      "items": [
+         {
+            "first_name": "Norbert",
+            "last_name": "Bober",
+            "can_access_closed": true,
+            "is_closed": false,
+            "photo_50": "https://sun1-99.u...nC7eC9Cd4&ava=1",
+            "likes": 114,
+            "a": null,
+            "now": "28.06.23"
+         },
+         {
+            "first_name": "Deget",
+            "last_name": "Bober",
+            "can_access_closed": true,
+            "is_closed": false,
+            "photo_50": "https://sun1-93.u...Ylb-6CPfo&ava=1",
+            "likes": 111,
+            "a": null,
+            "now": "28.06.23"
+         }
+      ]
+   }
+}
