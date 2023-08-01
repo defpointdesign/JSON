@@ -28,7 +28,6 @@ def ar_create():
         data = json.load(json_file)
         params['id'] = data[-1]['id']+1
         data.append(params)
-
     with open(FILE_NAME, 'w') as json_file:
         json.dump(data, json_file)
     return data
@@ -40,6 +39,22 @@ def ar_del(id):
         for index, article in enumerate(data):
             if str(article['id']) == id:
                 del data[index]
+    with open(FILE_NAME, 'w') as json_file:
+        json.dump(data, json_file)
+    return data
+
+@app.route('/articles/modify/<id>', methods=["POST"])
+def mod_del(id):
+    data = {}
+    params=request.form.to_dict()
+    with open(FILE_NAME, 'r') as file:
+        data=json.load(file)
+        for article in data:
+            if str(article['id']) == id:
+                article['name'] =params['name']
+                article['description'] = params['description']
+                article['author'] = params['author']
+                article['slug'] = params['slug']
     with open(FILE_NAME, 'w') as json_file:
         json.dump(data, json_file)
     return data
