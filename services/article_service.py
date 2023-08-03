@@ -1,29 +1,31 @@
-from JsonService import JsonService
-from flask import abort, request
+from services.json_service import JsonService
 
 FILE_NAME = 'dict.json'
 class ArticlesService:
     ''' Function for working with articles in JSON file'''
-    def showAll(name):
+    @staticmethod
+    def showAll():
         data = JsonService.readFile(FILE_NAME)
         return data
 
-    def showId(name, id):
+    @staticmethod
+    def showId(id):
         data = JsonService.readFile(FILE_NAME)
         for article in data:
             if article['id'] == id:
                 return article
-        abort(404)
+            else: None
 
-    def addNew(name):
-        params = request.form.to_dict()
+    @staticmethod
+    def addNew(params):
         data = JsonService.readFile(FILE_NAME)
         params['id'] = data[-1]['id'] + 1
         data.append(params)
         JsonService.writeFile(FILE_NAME, data)
         return JsonService.readFile(FILE_NAME)
 
-    def deleteId(name, id):
+    @staticmethod
+    def deleteId(id):
         data = JsonService.readFile(FILE_NAME)
         for index, article in enumerate(data):
             if str(article['id']) == id:
@@ -31,8 +33,8 @@ class ArticlesService:
         JsonService.writeFile(FILE_NAME, data)
         return JsonService.readFile(FILE_NAME)
 
-    def changeId(name, id):
-        params = request.form.to_dict()
+    @staticmethod
+    def changeId(id, params):
         data = JsonService.readFile(FILE_NAME)
         for article in data:
             if str(article['id']) == id:
@@ -41,7 +43,7 @@ class ArticlesService:
                 article['author'] = params['author']
                 article['slug'] = params['slug']
         JsonService.writeFile(FILE_NAME, data)
-        return JsonService.readFile(FILE_NAME)
+        return data
 
 
 
