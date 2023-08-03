@@ -32,6 +32,6 @@ for item in data['response']['items']:
     item['now'] = datetime.now().strftime('%d.%m.%y')
 
 # create file
-with open('my.json','w') as file:
+with open('my.json', 'w') as file:
     # function to serialize a Python object and write it to a JSON file.
     json.dump(data, file, indent=3)
